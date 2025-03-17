@@ -1,5 +1,5 @@
 import cv2
-# uint8 => u:只有正數 int:整數 8:8its => 只有正整數(含 0 )
+# uint8 => u:代表的是「unsigned」(無符號)，只有正數 int:整數 8:8its => 只有正整數(含 0 )
 img = cv2.imread("23callalily.jpg",1)
 img2 = cv2.imread("23callalily.jpg",2)
 
