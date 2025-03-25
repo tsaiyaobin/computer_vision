@@ -17,8 +17,9 @@ while True:
         break
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
     
-    lower = np.array([0, 20, 70])
+    lower = np.array([0, 70, 70])
     higher = np.array([20, 255, 255])
+
     
     mask=cv2.inRange(hsv,lower,higher)
 
@@ -54,8 +55,8 @@ while True:
         break
     ycrcb = cv2.cvtColor(frame,cv2.COLOR_BGR2YCR_CB)
     
-    lower = np.array([ 0, 97, 134])
-    higher = np.array([ 255, 142, 176])
+    lower = np.array([ 0, 140, 77])
+    higher = np.array([ 255, 173, 127])
     
     mask=cv2.inRange(ycrcb,lower,higher)
 
@@ -68,3 +69,4 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
+
