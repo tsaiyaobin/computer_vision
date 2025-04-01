@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 # color object tracking
-
+# 膚色檢測
 #-----------------
 #--顯示一般攝影機--
 #-----------------
