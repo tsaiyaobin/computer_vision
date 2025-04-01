@@ -5,7 +5,7 @@ import cv2
 # cv2.getTrackbarPos('<Trackbar_name>','<Window_name>')
 # min 最小值, max 最大值
 
-def nothing():
+def nothing(x):
     pass
 img = cv2.imread('img.jpg')
 
