@@ -1,0 +1,55 @@
+直方圖可以用來比對圖片像不像，缺點是 「 缺位置資訊 」 
+
+比較方法有四種
+
+# itersection:交集越小越不像(每個bin都去算交集)，越大越好
+
+# correl(相關係數):越大越好
+
+# chisqr(卡方):越小越好
+
+# bhattacharyya(巴氏距離):越小越好
+
+corr = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CORREL)
+
+chi_sqr = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
+
+intersect = cv2.compareHist(hist1, hist2, cv2.HISTCMP_INTERSECT)
+
+bhatta = cv2.compareHist(hist1, hist2, cv2.HISTCMP_BHATTACHARYYA)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+# 比較直方圖
+
+# 兩張圖要做比對，bin 數要相同
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread( "img.jpg" , 0 )
+img = cv2.resize( img , (300,300) )
+hist1 = cv2.calcHist( [img] , [0] , None , [256] , [0,256] ) # 計算直方圖
+
+img2 = cv2.imread( "img2.jpg" , 0 )
+img2 = cv2.resize( img2 , (300,300) )
+hist2 = cv2.calcHist( [img2] , [0] , None , [256] , [0,256] )
+
+img3 = cv2.imread( "img3.jpg" , 0)
+img3 = cv2.resize( img3 , (300,300))
+hist3 = cv2.calcHist( [img3] , [0] , None , [256] , [0,256] )
+
+
+chi_sqr12 = cv2.compareHist( hist1 , hist2 , cv2.HISTCMP_CHISQR )
+
+bhatta12 = cv2.compareHist( hist1 , hist2 , cv2.HISTCMP_BHATTACHARYYA )
+
+chi_sqr13 = cv2.compareHist( hist1 , hist3 , cv2.HISTCMP_CHISQR )
+
+bhatta13 = cv2.compareHist( hist1 , hist3 , cv2.HISTCMP_BHATTACHARYYA )
+
+
+print(f'第一跟第二張:chi_sqr:{chi_sqr12},bhatta:{bhatta12}')
+print(f'第一跟第三張:chi_sqr:{chi_sqr13},bhatta:{bhatta13}')
+

@@ -1,0 +1,48 @@
+第二週
+
+數位化採用PCM (Pulse Code Modulation) 技術, 包含三步驟: 
+
+    1.Sampling : 取樣 => 將2D空間切割成很多矩形的格子，每一格子有一離散位置 (x,y)。這個(x,y)又稱為像素
+
+    2.Quantization : 量化 => 將格子的彩色數值從無限位階的浮點數轉成離散值(有限的整數值)
+
+    3.Coding : 編碼 
+
+
+數位影像的品質由取樣與量化決定:
+
+    取樣決定了空間解析度(spatial resolution)的大小 => 取樣像素愈多解析度越好
+
+    量化決定顏色解析度 (color resolution)的高低 => 量化位階越多顏色越鮮豔
+
+
+影像類別由量化bit (比特)數決定:
+
+    Binary image (1 bit)  二值
+ 
+    Gray-level image (1 byte) 灰階
+	
+    True-Color image (3 bytes) 全彩
+
+    Indexed-Color image (log2n bits) 索引彩色 
+	
+	=> 用較少 bit (8 bit, 16 bit)表示彩色影像
+
+
+Question:
+
+    1.一張640 x 480 影像，640代表什麼? 480又代表什麼?
+
+        Ans:寬640、高480    	
+    
+    2.決定影像品質的要素有哪些? 說明之
+    
+        Ans:空間解析度、顏色解析度
+   
+    3.列出影像主要特徵
+      
+        Ans:顏色、形狀、紋理
+
+
+    
+

@@ -1,0 +1,91 @@
+第六週
+
+仿射變換 : 影像仿射變換是影像在二維空間的幾何變換，在仿射變換中，原圖中所有的平行線在結果圖像中同樣平行。執行仿射變換需要建構仿射變換矩陣。
+
+創建仿射變換矩陣,需要從原圖像中找到三個點,以及他們在輸出圖像中的位置。
+
+# cv2.getAffineTransform 將產生 「 2 x 3 」 矩陣 M, 此矩陣將傳給 cv2.warpAffine , 以執行變換。
+
+# 2D仿射變換包含scaling, translation, rotation, shearing(剪切) 等, 由變換矩陣的係數決定是哪一類
+
+# M = [[a b tx]  => tx, ty ∶ translation
+#      [c d ty]] => a,b,c,d: scaling, rotation, shearing
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import cv2
+import numpy as np
+
+img = cv2.imread("img.jpg")
+img = cv2.resize(img,(300,300))
+
+#平移
+
+tx,ty=50,100
+
+M = np.array([[1,0,tx],[0,1,ty]],dtype="float64")
+
+img2 = cv2.warpAffine(img,M,(300,300))
+
+# 旋轉
+# cv2.getRotationMatrix2D(center, angle, scale)
+
+M2 = cv2.getRotationMatrix2D( (150,150) , 45 , 1 )
+
+img3 = cv2.warpAffine(img , M2 , (300,300)) # cv2.warpAffine( src , M , dsize ) , dsize = size of output image ( width , height )
+
+cv2.imshow('img2',img2)
+cv2.imshow('img3',img3)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+=============================================================================================================================================================
+
+透視變換
+
+在變換前後直線還是直線. 做這個變換需要 「 3 x 3 」 矩陣
+
+要構建這個變換矩陣，需要在輸入圖像上找4 個點，以及他們在輸出圖像上對應的位置(4 個點), 這四個點中的任意三個都不能共線。
+
+這個變換矩陣可以用cv2.getPerspectiveTransform() 構建。然後把這個矩陣傳給函數cv2.warpPerspective以執行變換。
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import cv2
+import numpy as np
+
+img = cv2.imread("img.jpg")
+img = cv2.resize(img,(300,300))
+
+
+size=img.shape
+print(size)
+
+# 原始影像的四個點
+
+a1 = [ 0 , 0 ]
+b1 = [ size[0]-1 , 0 ]
+c1 = [ 0 , size[1]-1 ]
+d1 = [ size[0]-1 , size[1]-1 ]
+src1 = np.array([ a1 , b1 , c1 , d1 ] , dtype = "float32")
+
+# 要將原本四個點要移過去的四個座標
+
+a2 = [ 50 , 0 ]
+b2 = [ 250 , 0 ]
+c2 = [ 50 , size[1]-1 ]
+d2 = [ 250 , size[1]-1 ]
+dst1 = np.array([ a2 , b2 , c2 , d2 ] , dtype = "float32")
+
+# 如果做透視轉換是3*3矩陣不能用 warpAffine(2*3) 要用 warpPerspective(3*3)
+
+M = cv2.getPerspectiveTransform(src1, dst1) # M = cv2.getPerspectiveTransform(src, dst)
+
+img2 = cv2.warpPerspective( img , M , (300,300) ) # cv2.warpPerspective( src , M , dsize ) , dsize = size of output image ( width , height )
+
+
+cv2.imshow("img",img)
+cv2.imshow("img2",img2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
