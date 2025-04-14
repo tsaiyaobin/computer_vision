@@ -12,7 +12,7 @@ img=cv2.resize(img,(300,300))
 
 hist=cv2.calcHist( [img] , [0] , None , [256] , [0,256] )
 
-plt.hist(img.ravel(),256)
+plt.hist(img.ravel(),256) # ravel() 是 NumPy 的函式，會把影像從 2D 展平成 1 維陣列。
 plt.show()
 
 cv2.imshow('img',img)
