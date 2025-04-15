@@ -22,7 +22,7 @@
 
 	=> hierarchy : 是輪廓的層次信息，它描述了每個輪廓的關係。
 	
-		=> mode有四種 : cv2.RETR_EXTERNAL：只檢索最外層輪廓
+		=> mode (輪廓檢索模式) 有四種 : cv2.RETR_EXTERNAL：只檢索最外層輪廓
 
              			cv2.RETR_LIST：檢索所有輪廓，不建立層次關係
 
@@ -30,7 +30,7 @@
 
              			cv2.RETR_TREE：檢索所有輪廓，建立完整的層次結構
 		
-		=> method參數有三種可選：
+		=> method (輪廓近似方法) 參數有三種可選：
 				
 				cv2.CHAIN_APPROX_NONE：儲存所有輪廓點
 
