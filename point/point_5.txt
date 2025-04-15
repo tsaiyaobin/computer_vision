@@ -4,7 +4,9 @@
 
 創建仿射變換矩陣,需要從原圖像中找到三個點,以及他們在輸出圖像中的位置。
 
-# cv2.getAffineTransform 將產生 「 2 x 3 」 矩陣 M, 此矩陣將傳給 cv2.warpAffine , 以執行變換。
+# M = cv2.getAffineTransform( 原圖上的 3 個點（numpy 陣列，大小為 (3,2)） ,變換後目標位置的 3 個點（大小同樣為 (3,2)）) 
+
+    => 將產生 「 2 x 3 」 矩陣 M, 此矩陣將傳給 cv2.warpAffine , 以執行變換。
 
 # 2D仿射變換包含scaling, translation, rotation, shearing(剪切) 等, 由變換矩陣的係數決定是哪一類
 
